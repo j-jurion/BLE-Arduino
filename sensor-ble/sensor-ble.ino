@@ -30,10 +30,8 @@ void setup() {
 
   //BLE
   Serial.begin(9600);
-  Serial.println("test 1");
   //while (!Serial);
   
-  Serial.println("test 2");
   pinMode(LED_BUILTIN, OUTPUT);
   if (!BLE.begin()) {
     Serial.println("starting BLE failed!");
