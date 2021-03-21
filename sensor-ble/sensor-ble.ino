@@ -8,8 +8,8 @@ String id = "";
 
 //BLE
 #include <ArduinoBLE.h>
-BLEService senseService("19B10000-E8F2-537E-4F6C-D104768A1214");
-BLECharacteristic moistureChar("19B10000-E8F2-537E-4F6C-D104768A1214", BLERead | BLEWrite, 1);
+BLEService senseService("86ae654b-8ff4-483d-a386-8a698359b9c2");
+BLECharacteristic moistureValueChar("19B10000-E8F2-537E-4F6C-D104768A1215", BLERead, "moisture");
 
 //Sensing
   //Moisture
@@ -30,15 +30,19 @@ void setup() {
 
   //BLE
   Serial.begin(9600);
-  while (!Serial);
+  Serial.println("test 1");
+  //while (!Serial);
+  
+  Serial.println("test 2");
   pinMode(LED_BUILTIN, OUTPUT);
   if (!BLE.begin()) {
     Serial.println("starting BLE failed!");
     while (1);
   }
   BLE.setLocalName("BLE Sense");
+  BLE.setDeviceName("BLE Sense");
   BLE.setAdvertisedService(senseService);
-  senseService.addCharacteristic(moistureChar);
+  senseService.addCharacteristic(moistureValueChar);
   BLE.addService(senseService);
   BLE.advertise();
   Serial.println("Bluetooth device active, waiting for connections...");
@@ -65,17 +69,17 @@ void loop() {
     if (moisture < 0) {moisture = 0;}
     if (moisture > 100) {moisture = 100;}
       //Temperature
-    int sensorTemperatureVal = analogRead(sensorTemperaturePin);
-    float voltageTemp = (sensorTemperatureVal/1024.0) * 5.0;
-    float temperature = (voltageTemp - .5) * 100;
-    if (develmode) {
-      Serial.print("Sensor Value Temperature: ");
-      Serial.println(sensorTemperatureVal);
-      Serial.print(" Volts: ");
-      Serial.println(voltageTemp);
-      Serial.print("Temperature: ");
-      Serial.print(temperature);
-    }
+    //int sensorTemperatureVal = analogRead(sensorTemperaturePin);
+    //float voltageTemp = (sensorTemperatureVal/1024.0) * 5.0;
+    //float temperature = (voltageTemp - .5) * 100;
+    //if (develmode) {
+    //  Serial.print("Sensor Value Temperature: ");
+    //  Serial.println(sensorTemperatureVal);
+    //  Serial.print(" Volts: ");
+    //  Serial.println(voltageTemp);
+    //  Serial.print("Temperature: ");
+    //  Serial.print(temperature);
+    //}
     
 
     Serial.println();
@@ -84,7 +88,7 @@ void loop() {
     Serial.println(moisture);
     //Serial.println(moisture, HEX);
     moisture = moisture, HEX;
-    moistureChar.writeValue((byte)moisture);
+    moistureValueChar.writeValue((byte)moisture);
     Serial.println();
     delay(1000);
 
