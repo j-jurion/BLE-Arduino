@@ -12,7 +12,7 @@ Parts:
 - Moisture sensor
 - Temperature sensor
 
-Version 0.1.0
+Version main
 
 **0.1.0**
 Moisture, temperature and light sensor data is send out.
