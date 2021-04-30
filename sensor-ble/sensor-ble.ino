@@ -1,5 +1,5 @@
 //Development
-const bool develmode = false;
+const bool develmode = true;
 
 
 
@@ -16,7 +16,7 @@ BLECharacteristic lightValueChar("19B10000-E8F2-537E-4F6C-D104768A1217", BLERead
 
 //Sensing
   //Moisture
-const int sensorMoisturePin = A0;
+const int sensorMoisturePin = A3;
 const int dryVal = 880;
 const int dryValNano = 700;
 const int dryValNano10M = 520;
@@ -24,9 +24,9 @@ const int wetVal = 674;
 const int wetValNano = 230;
 const int wetValNano10M = 180;
   //Temperature
-const int sensorTemperaturePin = A1;
+const int sensorTemperaturePin = A6;
   //Light
-const int sensorLightPin = A2;
+const int sensorLightPin = A0;
 const int sensorLightLow = 0;
 const int sensorLightHigh = 1023;
 
