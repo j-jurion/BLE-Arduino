@@ -38,6 +38,9 @@ void setup() {
   Serial.begin(9600);
   //while (!Serial);
   
+  //Analog setup
+  analogReadResolution(10);
+  
   pinMode(LED_BUILTIN, OUTPUT);
   if (!BLE.begin()) {
     Serial.println("starting BLE failed!");
@@ -78,7 +81,7 @@ void loop() {
     
         //Temperature
       int sensorTemperatureVal = analogRead(sensorTemperaturePin);
-      float voltageTemp = (sensorTemperatureVal/1024.0) * 3.3;
+      float voltageTemp = (sensorTemperatureVal/1024.0) * 5.0;
       float temperature = (voltageTemp - .5) * 100;
       if (develmode) {
         Serial.print("Sensor Value Temperature: ");
